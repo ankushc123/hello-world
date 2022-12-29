@@ -6,7 +6,7 @@ pipeline{
         stage('SSH AGENT'){
             
             steps{
-                 sshagent(['ansible_id']) {
+                 sshagent(['ansible']) {
                  sudo su - ansadmin;
                  cd /opt;
                  ansible-playbook tomcat_install.yml;

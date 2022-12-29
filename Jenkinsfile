@@ -1,8 +1,15 @@
 pipeline{
     
     agent any 
-    stages {
-        
+   stages{
+        stage('Git CheckOut')
+        {
+            steps{
+                script{
+                 git 'https://github.com/ankushc123/first-demo-project.git'
+                }
+            }
+        }        
         stage('SSH AGENT'){
             
             steps{

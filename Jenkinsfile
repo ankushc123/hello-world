@@ -7,9 +7,10 @@ pipeline{
             
             steps{
                  sshagent(['ansible_id']) {
-                 sudo su - ansadmin;
-                 cd /opt;
-                 ansible-playbook tomcat_install.yml;
+                     sh 'ssh -o  StrictHostKeyChecking=no ansadmin@52.66.240.134';
+                     sh 'sudo su - ansadmin';
+                     sh 'cd /opt';
+                     sh 'ansible-playbook tomcat_install.yml';
                 }
             }
         }    

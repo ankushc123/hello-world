@@ -1,4 +1,5 @@
 pipeline{
+      agent any
       environment {
     /*
      define your command in variable
@@ -18,7 +19,7 @@ pipeline{
                 }
             }
         }        
-  /*      stage('SSH AGENT'){
+     stage('SSH AGENT'){
             
             steps{
                  sshagent(['ansadmin-id']) {
@@ -27,6 +28,6 @@ pipeline{
                                sh """ssh -tt ansadmin@52.66.240.134 -o StrictHostKeyChecking=no $remoteCommands 
                             }
                 }
-            } */
+            } 
         }       
 }

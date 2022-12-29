@@ -1,6 +1,17 @@
 pipeline{
     
-    agent any 
+    agent any
+      environment {
+    /*
+     define your command in variable
+     */
+    remoteCommands =
+      """
+                     sh 'sudo su - ansadmin'
+                     sh 'cd /opt'
+                     sh 'ansible-playbook tomcat_install.yml'
+      """
+  }
    stages{
         stage('Git CheckOut')
         {
@@ -14,10 +25,10 @@ pipeline{
             
             steps{
                  sshagent(['ansible_id']) {
-                     sh 'ssh -tt ansadmin@52.66.240.134';
-                     sh 'sudo su - ansadmin';
-                     sh 'cd /opt';
-                     sh 'ansible-playbook tomcat_install.yml';
+                     script 
+                            {
+                               sh """ssh -tt ansadmin@52.66.240.134 -o StrictHostKeyChecking=no $remoteCommands 
+                             }
                 }
             }
         }    

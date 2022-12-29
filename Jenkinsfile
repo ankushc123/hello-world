@@ -6,7 +6,7 @@ pipeline{
         {
             steps{
                 script{
-                 git 'https://github.com/ankushc123/first-demo-project.git'
+                 git 'https://github.com/ankushc123/hello-world.git'
                 }
             }
         }        

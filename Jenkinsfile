@@ -1,26 +1,17 @@
 pipeline{
     
     agent any 
-    environment {
-    PATH="/opt/apache-maven-3.8.6/bin:$PATH"
-    }
-    
     stages {
         
-        stage('Git Checkout'){
+        stage('SSH AGENT'){
             
             steps{
-
-                    git branch: 'main', url: 'https://github.com/ankushc123/demo-counter-app.git'
-
+                 sshagent(['ansible_id']) {
+                 sudo su - ansadmin;
+                 cd /opt;
+                 ansible-playbook tomcat_install.yml;
+                }
             }
         }    
-        stage('maven compile'){
-            
-            steps{
-                    
-                   sh 'mvn compile'
-            }
-        }       
-}
+    }
 }
